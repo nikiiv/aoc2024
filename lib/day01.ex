@@ -1,6 +1,5 @@
 defmodule Day01 do
-  @file_name "/Users/niki/aoc/day01/input.txt"
-  @file_name2 "/Users/niki/aoc/day01/small_input"
+  @file_name "/Users/niki/aoc2024/input/day01.txt"
 
   def parse_csv, do: parse_csv(@file_name)
 

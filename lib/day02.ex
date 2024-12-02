@@ -1,6 +1,5 @@
 defmodule Day02 do
-  @file_name "/Users/niki/aoc/day02/input.txt"
-  @file_name2 "/Users/niki/aoc/day02/small_input.txt"
+  @file_name "/Users/niki/aoc2024/input/day02.txt"
 
   def parse_file(file_path) do
     # Read the file content
@@ -22,8 +21,6 @@ defmodule Day02 do
     |> String.split(" ", trim: true)
     |> Enum.map(&String.to_integer/1)
   end
-
-  def solve_example, do: solve_problem(@file_name2)
 
   def solve_problem, do: solve_problem(@file_name)
 
