@@ -68,7 +68,7 @@ defmodule Day02 do
     end
   end
 
-  def check(nums) when length(nums) == 1, do: :safe
+  def check([_num]), do: :safe
 
   def check([h | t] = _l) do
     # IO.puts("Checking #{inspect(l)} ")
