@@ -41,7 +41,7 @@ defmodule Day04 do
   def start(lines) do
     wrap(lines)
     |> solve1
-    |> Enum.count(&(&1 == true))
+    |> Enum.count(& &1)
   end
 
   def solve1(%{lines: lines, cols: cols, rows: rows} = _data) do
@@ -74,7 +74,7 @@ defmodule Day04 do
 
     wrap(lines)
     |> solve2()
-    |> Enum.count(&(&1 == true))
+    |> Enum.count(& &1)
   end
 
   def do_it_b do
@@ -82,7 +82,7 @@ defmodule Day04 do
 
     wrap(lines)
     |> solve2()
-    |> Enum.count(&(&1 == true))
+    |> Enum.count(& &1)
   end
 
   def solve2(%{lines: lines, cols: cols, rows: rows} = _data) do
