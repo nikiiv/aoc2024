@@ -88,9 +88,12 @@ defmodule Day05 do
 
   def fix_incorrect(rules, pages, already_printed) do
     # IO.inspect(["fix_incorrect", pages, already_printed], charlists: :as_lists)
-    index = Enum.find_index(pages, fn p -> page_ok(rules, p, already_printed) end)
-    page = Enum.at(pages, index)
-    pages = List.delete(pages, page)
+
+    {left, [page | right]} = Enum.split_while(pages, &(not page_ok(rules, &1, already_printed)))
+    pages = left ++ right
+    # index = Enum.find_index(pages, fn p -> page_ok(rules, p, already_printed) end)
+    # page = Enum.at(pages, index)
+    # pages = List.delete(pages, page)
     # IO.inspect([page, pages], charlists: :as_lists)
     fix_incorrect(rules, pages, already_printed ++ [page])
   end
