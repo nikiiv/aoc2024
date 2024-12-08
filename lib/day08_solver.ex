@@ -1,4 +1,4 @@
-defmodule Day08.GridParser do
+defmodule Day08.Solver do
   defstruct grid: %{}, width: 0, height: 0
 
   @doc """
@@ -103,7 +103,7 @@ defmodule Day08.GridParser do
       |> Enum.reduce(updated_canvas, fn {{x, y}, _}, canvas_acc ->
         # If the current dot is a valid candidate, mark it as `#`
         if possible_candidate_func.(originA, originB, {x, y}) do
-          IO.inspect(["New candidate", letter, originA, originB, {x, y}])
+          # candidate", letter, originA, originB, {x, y}])
           update_char(canvas_acc, {x, y}, "#")
         else
           canvas_acc
@@ -142,12 +142,8 @@ defmodule Day08.GridParser do
   end
 
   @doc """
-  Takes a list of coordinate pairs and returns all possible pairwise combinations.
+  Takes a list of coordinate pairs and returns all possible pairwise combinations, no overlap
   """
-  def pair_combinations_o(pairs) do
-    for p1 <- pairs, p2 <- pairs, p1 != p2, do: {p1, p2}
-  end
-
   def pair_combinations(pairs) do
     for {p1, i} <- Enum.with_index(pairs),
         {p2, j} <- Enum.with_index(pairs),
@@ -174,26 +170,5 @@ defmodule Day08.GridParser do
 
       IO.puts("")
     end
-  end
-
-  @doc """
-  Blends two grids: `data_grid` and `canvas_grid`.
-
-  - If the point in `data_grid` is a dot (`.`) and the corresponding point in `canvas_grid` is `#`, the result will be `#`.
-  - Otherwise, the result will be the value from `data_grid`.
-  """
-  def blend_grids(data_grid, canvas_grid) do
-    blended_grid =
-      for {coord, data_value} <- data_grid.grid, into: %{} do
-        canvas_value = Map.get(canvas_grid.grid, coord, ".")
-
-        if data_value == "." and canvas_value == "#" do
-          {coord, "#"}
-        else
-          {coord, data_value}
-        end
-      end
-
-    %__MODULE__{grid: blended_grid, width: data_grid.width, height: data_grid.height}
   end
 end
