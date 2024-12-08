@@ -1,5 +1,5 @@
 defmodule Day08 do
-  alias Day08.GridParser, as: U
+  alias Day08.Solver, as: U
 
   def sample_data do
     """
@@ -18,16 +18,16 @@ defmodule Day08 do
     """
   end
 
-  def sample, do: sample_data() |> Day08.GridParser.parse()
+  def sample, do: sample_data() |> U.parse()
 
   def test_data do
     File.read!("/Users/niki/aoc2024/input/day08.txt")
   end
 
   def mark_candidates(data_grid, func) do
-    letters = U.unique_non_dot_chars(data_grid) |> Enum.filter(fn ch -> ch != " " end)
+    letters = U.unique_non_dot_chars(data_grid)
     canvas_grid = U.empty_canvas(data_grid)
-    IO.inspect(letters)
+    IO.puts("Antenas #{inspect(letters)}")
 
     canvas =
       Enum.reduce(letters, canvas_grid, fn l, canvas_grid ->
@@ -46,8 +46,9 @@ defmodule Day08 do
   def solve(data, func) do
     data_grid = U.parse(data)
     res = mark_candidates(data_grid, func)
+    IO.puts("Source data")
     U.print_grid(data_grid)
-    IO.inspect("ghahah")
+    IO.puts("Result")
     U.print_grid(res)
     res |> U.count_candidates()
   end
