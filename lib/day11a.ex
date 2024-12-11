@@ -52,13 +52,13 @@ defmodule Day11a do
   end
 
   def solve(iter) do
-    {total_steps, mem} =
+    {total_steps, memento} =
     @data
-    |> Enum.reduce({0, Memento.new}, fn num,{total_steps, memento} ->
+    |> Enum.reduce({0, Memento.new()}, fn num, {total_steps, memento} ->
       {steps, memento} = solve(memento, num, iter)
       {total_steps+steps, memento}
     end)
-    IO.inspect(map_size(mem), label: "Final Memento size")
+    IO.inspect(map_size(memento), label: "Final Memento size")
     total_steps
   end
 
