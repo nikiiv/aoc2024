@@ -24,11 +24,12 @@ defmodule Day11a do
   @spec compute(Memento.t(), integer(), integer()) :: {integer(), Memento.t()}
   def compute(memento, single_num, step) do
     str = Integer.to_string(single_num)
+
     {steps, new_memento} =
     cond do
       single_num == 0 -> solve(memento, 1, step-1)
 
-      rem(String.length(Integer.to_string(single_num)),2) == 0 ->
+      rem(String.length(str),2) == 0 ->
         [left,right] = extract(str)
         {l,m1} = solve(memento, left, step-1)
         {r,m3} = solve(m1,right, step-1)
