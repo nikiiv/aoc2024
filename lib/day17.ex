@@ -113,7 +113,7 @@ defmodule Day17 do
   end
 
   defp move_cost(nil, dir, cost, []) when dir != :left, do: cost + 1001 + 1000
-  defp move_cost(nil, dir, cost, []), do: cost + 1
+  defp move_cost(nil, _dir, cost, []), do: cost + 1
   defp move_cost(last_dir, last_dir, cost, _), do: cost + 1
   defp move_cost(_last_dir, _new_dir, cost, _), do: cost + 1001
 

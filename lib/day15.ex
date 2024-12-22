@@ -43,7 +43,7 @@ defmodule Day15 do
 
   def transpose(matrix) do
     matrix
-    |> List.zip()
+    |> Enum.zip()
     |> Enum.map(&Tuple.to_list/1)
   end
 
