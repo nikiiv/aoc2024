@@ -31,28 +31,12 @@ defmodule Graph do
 end
 
 defmodule GraphBuilder do
-  @moduledoc """
+  doc("""
   Builds a graph from a list of connection strings.
-  """
+  """)
 
   alias Graph
 
-  @doc """
-  Parses a list of connection strings and builds the adjacency map.
-
-  ## Example
-
-      iex> connections = ["A-B", "B-C", "A-C"]
-      iex> GraphBuilder.build_graph(connections)
-      %Graph{
-        adjacency: %{
-          "A" => #MapSet<["B", "C"]>,
-          "B" => #MapSet<["A", "C"]>,
-          "C" => #MapSet<["A", "B"]>
-        }
-      }
-
-  """
   def build_graph(connections) when is_list(connections) do
     Enum.reduce(connections, Graph.new(), fn connection, graph ->
       [node1, node2] = String.split(connection, "-")
@@ -226,4 +210,4 @@ defmodule MaximumCliqueApp do
 end
 
 # Run the application
-MaximumCliqueApp.run()
+# MaximumCliqueApp.run()
